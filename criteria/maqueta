@@ -1,0 +1,231 @@
+<!-- 
+  CRITERIA | MÓDULO DE COMPRA PROFESIONAL
+  Inspiración funcional: Suplementos Colo
+  Características: 
+  - Desglose de precios (Lista vs Transferencia 15% OFF)
+  - Calculador de envíos por CP (Lógica para Río Cuarto)
+  - Tabs de Información: Aval Clínico vs Ficha Técnica
+  - Selector de cantidad y feedback de carrito
+-->
+
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+    
+    .criteria-shop-module {
+        font-family: 'Inter', sans-serif;
+        color: #1e293b;
+        background-color: #ffffff;
+        border-radius: 40px;
+        overflow: hidden;
+    }
+
+    .tab-btn-criteria {
+        position: relative;
+        padding-bottom: 12px;
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #94a3b8;
+        transition: all 0.3s ease;
+    }
+
+    .tab-btn-criteria.active {
+        color: #064e3b;
+    }
+
+    .tab-btn-criteria.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #10b981;
+        border-radius: 2px;
+    }
+
+    /* Animación de feedback al agregar */
+    .added-feedback {
+        animation: pulseGreen 0.5s ease-in-out;
+    }
+    @keyframes pulseGreen {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); background-color: #10b981; }
+        100% { transform: scale(1); }
+    }
+</style>
+
+<div class="criteria-shop-module max-w-6xl mx-auto shadow-2xl border border-slate-100 my-10">
+    <div class="grid lg:grid-cols-2 gap-0">
+        
+        <!-- LADO IZQUIERDO: Visualización -->
+        <div class="bg-slate-50 p-12 flex flex-col items-center justify-center border-r border-slate-100">
+            <div class="bg-white rounded-[40px] w-full aspect-square flex items-center justify-center shadow-sm border border-white relative overflow-hidden group">
+                <!-- Placeholder de imagen (Reemplazar src por la URL de la imagen real) -->
+                <span class="text-[120px] opacity-10 group-hover:scale-110 transition-transform duration-500">💊</span>
+                <div class="absolute top-6 left-6 bg-emerald-900 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">
+                    Selección Lic. Verde
+                </div>
+            </div>
+            
+            <!-- Miniaturas Mock -->
+            <div class="grid grid-cols-4 gap-4 mt-8 w-full">
+                <div class="bg-white border-2 border-emerald-500 rounded-2xl aspect-square flex items-center justify-center cursor-pointer">
+                    <span class="text-xl opacity-20">💊</span>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-2xl aspect-square flex items-center justify-center cursor-pointer hover:border-emerald-500 transition-colors">
+                    <span class="text-xl opacity-20">🔬</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- LADO DERECHO: Información y Compra -->
+        <div class="p-12 flex flex-col">
+            <div class="mb-2">
+                <span id="product-brand" class="text-xs font-black text-emerald-700 uppercase tracking-widest">Star Nutrition</span>
+                <span class="text-slate-300 mx-2">|</span>
+                <span id="product-ev" class="text-xs font-bold text-slate-400 uppercase">Evidencia Grado A</span>
+            </div>
+            
+            <h2 id="product-name" class="text-4xl font-black text-slate-900 leading-tight mb-6 tracking-tighter">
+                Creatina USP Creapure 300g
+            </h2>
+
+            <div class="bg-slate-50 rounded-3xl p-8 mb-8 border border-slate-100">
+                <!-- Precio de Lista -->
+                <div class="mb-4">
+                    <p class="text-slate-400 line-through text-lg font-medium">$45.000</p>
+                    <div class="flex items-baseline gap-3">
+                        <p id="main-price" class="text-5xl font-black text-slate-900 tracking-tighter">$38.250</p>
+                        <span class="bg-emerald-100 text-emerald-700 text-[10px] font-black px-2 py-1 rounded uppercase">15% OFF</span>
+                    </div>
+                    <p class="text-emerald-700 font-bold text-sm mt-1 italic">Precio pagando con Transferencia Bancaria</p>
+                </div>
+
+                <!-- Cuotas -->
+                <div class="flex items-center gap-3 py-4 border-y border-slate-200/60 mb-6">
+                    <span class="text-2xl">💳</span>
+                    <div>
+                        <p class="text-slate-900 font-bold text-sm">3 cuotas sin interés de $15.000</p>
+                        <p class="text-xs text-slate-500 font-medium">Precio de lista: $45.000 con todas las tarjetas</p>
+                    </div>
+                </div>
+
+                <!-- Selector de Cantidad y Botón -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex items-center justify-between border border-slate-200 rounded-2xl px-4 py-3 bg-white min-w-[120px]">
+                        <button onclick="criteriaCart.updateQ(-1)" class="text-xl font-bold text-slate-400 hover:text-emerald-700">-</button>
+                        <input id="criteria-q" type="number" value="1" class="w-10 text-center font-black text-slate-900 focus:outline-none" readonly>
+                        <button onclick="criteriaCart.updateQ(1)" class="text-xl font-bold text-slate-400 hover:text-emerald-700">+</button>
+                    </div>
+                    <button onclick="criteriaCart.addToCart()" id="add-btn" class="flex-grow bg-emerald-900 text-white font-black uppercase tracking-widest py-4 rounded-2xl hover:bg-emerald-800 transition-all shadow-xl active:scale-95">
+                        Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calculador de Envío -->
+            <div class="mb-10">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Medios de Envío</p>
+                <div class="flex gap-2 mb-4">
+                    <input id="criteria-cp" type="text" placeholder="Tu código postal" class="flex-grow bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-emerald-500 focus:ring-0 outline-none transition-all">
+                    <button onclick="criteriaCart.calculateShipping()" class="bg-slate-900 text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-wider hover:bg-slate-800 transition-colors">Calcular</button>
+                </div>
+                <div id="shipping-results" class="hidden space-y-2">
+                    <div class="flex justify-between items-center p-3 bg-emerald-50 rounded-xl border border-emerald-100 text-sm">
+                        <span class="font-semibold text-emerald-900">Retiro en IMRC (Río Cuarto)</span>
+                        <span class="font-black text-emerald-700 uppercase">Gratis</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100 text-sm">
+                        <span class="font-semibold text-slate-700">Envío Andreani (Nacional)</span>
+                        <span class="font-black text-slate-900">$5.200</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solapas de Información (Tabs) -->
+            <div class="mt-auto">
+                <div class="flex gap-8 border-b border-slate-100 mb-6">
+                    <button onclick="criteriaCart.switchTab('clinical')" id="btn-tab-clinical" class="tab-btn-criteria active">Aval Clínico</button>
+                    <button onclick="criteriaCart.switchTab('specs')" id="btn-tab-specs" class="tab-btn-criteria">Ficha Técnica</button>
+                </div>
+                <div id="criteria-tab-content" class="text-sm text-slate-500 leading-relaxed italic">
+                    <p class="font-bold text-slate-900 not-italic mb-2">Perspectiva del Director:</p>
+                    "La creatina monohidrato grado USP es el estándar de oro en recuperación. En CRITERIA validamos este producto por su nulo contenido de impurezas, asegurando una resíntesis de ATP eficiente en pacientes con pérdida muscular."
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const criteriaCart = {
+        // Lógica de cantidad
+        updateQ(val) {
+            const input = document.getElementById('criteria-q');
+            let current = parseInt(input.value);
+            if (current + val >= 1) {
+                input.value = current + val;
+            }
+        },
+
+        // Lógica de agregado al carrito (Feedback visual)
+        addToCart() {
+            const btn = document.getElementById('add-btn');
+            const q = document.getElementById('criteria-q').value;
+            
+            btn.innerText = '¡PRODUCTO AGREGADO!';
+            btn.classList.add('added-feedback', 'bg-emerald-600');
+            
+            setTimeout(() => {
+                btn.innerText = 'AGREGAR AL CARRITO';
+                btn.classList.remove('added-feedback', 'bg-emerald-600');
+            }, 2000);
+
+            console.log(`Agregando ${q} unidades al carrito.`);
+            // Aquí se integraría la lógica real de persistencia (localStorage o API)
+        },
+
+        // Lógica de Envío
+        calculateShipping() {
+            const cp = document.getElementById('criteria-cp').value;
+            const resultBox = document.getElementById('shipping-results');
+            
+            if (cp.length >= 4) {
+                resultBox.classList.remove('hidden');
+                resultBox.classList.add('animate-fadeIn');
+            } else {
+                alert("Por favor, ingresá un código postal válido.");
+            }
+        },
+
+        // Lógica de Tabs
+        switchTab(type) {
+            const content = document.getElementById('criteria-tab-content');
+            const btnClin = document.getElementById('btn-tab-clinical');
+            const btnSpecs = document.getElementById('btn-tab-specs');
+
+            if (type === 'clinical') {
+                btnClin.classList.add('active');
+                btnSpecs.classList.remove('active');
+                content.innerHTML = `
+                    <p class="font-bold text-slate-900 not-italic mb-2">Perspectiva del Director:</p>
+                    "La creatina monohidrato grado USP es el estándar de oro en recuperación. En CRITERIA validamos este producto por su nulo contenido de impurezas, asegurando una resíntesis de ATP eficiente en pacientes con pérdida muscular."
+                `;
+            } else {
+                btnClin.classList.remove('active');
+                btnSpecs.classList.add('active');
+                content.innerHTML = `
+                    <ul class="space-y-2 not-italic">
+                        <li class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-900">Formato</span><span>Polvo Micronizado</span></li>
+                        <li class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-900">Servicios</span><span>60 servicios</span></li>
+                        <li class="flex justify-between border-b border-slate-50 py-2"><span class="font-bold text-slate-900">Pureza</span><span>99.9% Monohidrato</span></li>
+                        <li class="flex justify-between py-2"><span class="font-bold text-slate-900">Origen</span><span>Argentina (Materia Prima Importada)</span></li>
+                    </ul>
+                `;
+            }
+        }
+    };
+</script>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITERIA | Nutrición Clínica & Especializada | Lic. Javier Verde</title>
+    <meta name="description" content="CRITERIA: Ecosistema de salud nutricional de alta complejidad. Dirección clínica y boutique de suplementación médica basada en evidencia científica.">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="#" class="logo-link" onclick="app.navigate('inicio', event)">
+                <div class="logo-wrapper">
+                    <div class="logo-halo"></div>
+                    <div class="nucleus"></div>
+                    <div class="valence v1"></div>
+                    <div class="valence v2"></div>
+                    <div class="valence v3"></div>
+                    <div class="connection c1"></div>
+                    <div class="connection c2"></div>
+                    <div class="connection c3"></div>
+                </div>
+                <div class="logo-text">
+                    <h1>CRITERIA</h1>
+                    <p>Clinical Nutrition</p>
+                </div>
+            </a>
+            
+            <div class="mobile-menu-toggle" onclick="app.toggleMenu()">
+                <i data-lucide="menu"></i>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#inicio" class="nav-link active" data-target="inicio" onclick="app.toggleMenu(false)">Inicio</a></li>
+                    <li><a href="#tienda" class="nav-link" data-target="tienda" onclick="app.toggleMenu(false)">Boutique Médica</a></li>
+                    <li><a href="#campus" class="nav-link" data-target="campus" onclick="app.toggleMenu(false)">Campus</a></li>
+                    <li><a href="#profesional" class="nav-link" data-target="profesional" onclick="app.toggleMenu(false)">Dirección Profesional</a></li>
+                    <li><a href="#blog" class="nav-link" data-target="blog" onclick="app.toggleMenu(false)">Evidencia</a></li>
+                </ul>
+            </nav>
+            
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <div id="auth-trigger" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--slate-dark); font-size: 0.85rem; font-weight: 700;" onclick="app.openAuthModal()">
+                    <i data-lucide="user-circle"></i>
+                    <span>Entrar</span>
+                </div>
+                <div id="cart-icon" style="position: relative; cursor: pointer; color: var(--slate-dark); transition: transform 0.3s ease;" onclick="alert('Funcionalidad de carrito en desarrollo - Se integrará con el sistema de pedidos.')">
+                    <i data-lucide="shopping-cart"></i>
+                    <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background: var(--medical-green); color: white; font-size: 0.6rem; font-weight: 900; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
+                </div>
+                <button onclick="app.openBookingWizard()" class="btn btn-primary">Agendar Turno</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECTION: INICIO -->
+        <section id="inicio" class="view-section active">
+            <div class="hero-section">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="pulse-dot"></span>
+                            Soporte de Alta Complejidad
+                        </div>
+                        <h2 class="hero-title">Ciencia aplicada a la <span>recuperación.</span></h2>
+                        <p class="hero-description">
+                            Bienvenidos a <strong>CRITERIA</strong>. Un ecosistema de salud que equilibra la prestación clínica de alta complejidad con la venta de suplementación de grado médico seleccionada rigurosamente.
+                        </p>
+                        <div class="hero-actions" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+                            <a href="#tienda" class="btn btn-primary" onclick="app.navigate('tienda', event)">Explorar Boutique</a>
+                            <a href="#profesional" class="btn" style="background: white; border: 1px solid var(--slate-light); color: var(--slate-dark);" onclick="app.navigate('profesional', event)">Dirección Profesional</a>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--slate-light); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; border-top: 1px solid #f1f5f9; pt: 1rem; display: inline-block;">
+                            <span style="color: var(--medical-green);">●</span> Protocolos Validados ESPEN & ASPEN
+                        </p>
+                    </div>
+                    <div class="hero-image-container">
+                        <img src="ChatGPT Image 15 may 2026, 04_37_45 p.m..png" alt="Clinical Excellence" class="hero-main-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHILOSOPHY BANNER (MOVED HIGHER) -->
+            <div class="clinical-showcase-wrapper" style="margin: -4rem auto 4rem; max-width: 1280px; padding: 0 2rem; position: relative; z-index: 20;">
+                <div class="why-banner-premium">
+                    <div class="banner-content">
+                        <div class="banner-badge">Diferencial Criteria</div>
+                        <h4>¿Por qué este enfoque es diferente?</h4>
+                        <p>En <strong>CRITERIA</strong>, la intervención nutricional es considerada una terapia médica de soporte crítico. Buscamos resultados funcionales medibles: menos tiempo de internación, mayor preservación muscular y recuperación real de la autonomía del paciente.</p>
+                    </div>
+                    <div class="banner-visual">
+                        <div class="dna-animation">
+                            <i data-lucide="dna" class="dna-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: METODOLOGÍA DE INTERVENCIÓN -->
+            <div style="max-width: 1280px; margin: 8rem auto 0; padding: 0 2rem 100px; position: relative; z-index: 10;">
+                <div style="margin-bottom: 4rem; text-align: left;">
+                    <div style="max-width: 850px;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                            <div class="logo-wrapper" style="transform: scale(0.6); margin-left: -12px;">
+                                <div class="logo-halo"></div>
+                                <div class="nucleus"></div>
+                                <div class="valence v1"></div>
+                                <div class="valence v2"></div>
+                                <div class="valence v3"></div>
+                                <div class="connection c1"></div>
+                                <div class="connection c2"></div>
+                                <div class="connection c3"></div>
+                            </div>
+                            <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: var(--emerald-deep);">Ecosistema CRITERIA</span>
+                        </div>
+                        <h2 class="font-heading" style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem;">Metodología de <span style="color: var(--emerald-mid); font-style: italic;">Intervención Clínica.</span></h2>
+                        <p style="color: var(--slate-light); font-size: 1.2rem; max-width: 700px;">
+                            Nuestro enfoque no se limita al diagnóstico; diseñamos un camino de estabilización metabólica basado en 4 pilares de rigor científico.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="intervention-grid">
+                    <!-- Pilar 1 -->
+                    <div class="intervention-card" data-pilar="1">
+                        <div class="pilar-glow"></div>
+                        <span class="step-number">01. DATA</span>
+                        <div class="pilar-icon-wrapper">
+                            <i data-lucide="microscope"></i>
+                        </div>
+                        <h3 class="pilar-title">Valoración Fenotípica</h3>
+                        <p class="pilar-text">Análisis profundo del estado catabólico y reservas musculares. No usamos promedios; usamos tus datos específicos.</p>
+                        <div class="pilar-indicator"></div>
+                    </div>
+
+                    <!-- Pilar 2 -->
+                    <div class="intervention-card" data-pilar="2">
+                        <div class="pilar-glow"></div>
+                        <span class="step-number">02. SCIENCE</span>
+                        <div class="pilar-icon-wrapper">
+                            <i data-lucide="binary"></i>
+                        </div>
+                        <h3 class="pilar-title">Traslación de Guías</h3>
+                        <p class="pilar-text">Aplicación de consensos internacionales (ESPEN/ASPEN) adaptados a la fisiopatología de tu patología actual.</p>
+                        <div class="pilar-indicator"></div>
+                    </div>
+
+                    <!-- Pilar 3 -->
+                    <div class="intervention-card" data-pilar="3">
+                        <div class="pilar-glow"></div>
+                        <span class="step-number">03. SUPPORT</span>
+                        <div class="pilar-icon-wrapper">
+                            <i data-lucide="activity"></i>
+                        </div>
+                        <h3 class="pilar-title">Soporte de Precisión</h3>
+                        <p class="pilar-text">Diseño de suplementación de grado médico para modular la inflamación y potenciar la síntesis proteica.</p>
+                        <div class="pilar-indicator"></div>
+                    </div>
+
+                    <!-- Pilar 4 -->
+                    <div class="intervention-card" data-pilar="4">
+                        <div class="pilar-glow"></div>
+                        <span class="step-number">04. MONITOR</span>
+                        <div class="pilar-icon-wrapper">
+                            <i data-lucide="gauge"></i>
+                        </div>
+                        <h3 class="pilar-title">Acompañamiento IMRC</h3>
+                        <p class="pilar-text">Monitoreo constante en entorno hospitalario o consultorio para ajustar dosis según la evolución clínica.</p>
+                        <div class="pilar-indicator"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: TIENDA -->
+        <section id="tienda" class="view-section">
+            <div style="max-width: 1280px; margin: 0 auto; padding: 100px 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem;">
+                    <div>
+                        <h2 class="font-heading" style="font-size: 3.5rem; margin-bottom: 1.5rem;">Boutique Médica</h2>
+                        <p style="color: var(--slate-light); max-width: 600px;">
+                            Suplementación curada bajo <strong>Criterio Profesional</strong>. No vendemos marcas, vendemos herramientas terapéuticas validadas.
+                        </p>
+                    </div>
+                    <div id="filter-container" style="display: flex; gap: 1rem; background: white; padding: 0.5rem; border-radius: 20px; border: 1px solid #e2e8f0; flex-wrap: wrap;">
+                        <button class="filter-btn active" data-filter="Todo" style="padding: 0.5rem 1.5rem; border-radius: 14px; border: none; cursor: pointer; font-weight: 700;">Todo</button>
+                        <button class="filter-btn" data-filter="Metabólico" style="padding: 0.5rem 1.5rem; border-radius: 14px; border: none; cursor: pointer; font-weight: 700; background: transparent;">Metabólico</button>
+                        <button class="filter-btn" data-filter="Oncológico" style="padding: 0.5rem 1.5rem; border-radius: 14px; border: none; cursor: pointer; font-weight: 700; background: transparent;">Oncológico</button>
+                        <button class="filter-btn" data-filter="Deportivo" style="padding: 0.5rem 1.5rem; border-radius: 14px; border: none; cursor: pointer; font-weight: 700; background: transparent;">Deportivo</button>
+                        <button class="filter-btn" data-filter="Digestivo" style="padding: 0.5rem 1.5rem; border-radius: 14px; border: none; cursor: pointer; font-weight: 700; background: transparent;">Digestivo</button>
+                        <button class="filter-btn" data-filter="Renal" style="padding: 0.5rem 1.5rem; border-radius: 14px; border: none; cursor: pointer; font-weight: 700; background: transparent;">Renal</button>
+                    </div>
+                </div>
+                <div id="product-grid" class="product-grid">
+                    <!-- Products injected by JS -->
+                </div>
+
+                <!-- CLINICAL VALIDATION BANNER -->
+                <div style="margin-top: 6rem; padding: 4rem; background: var(--slate-dark); border-radius: 48px; position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr 300px; align-items: center; gap: 4rem; border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="z-index: 2;">
+                        <span style="color: var(--medical-green); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3em; display: block; margin-bottom: 1.5rem;">Seguridad Farmacológica</span>
+                        <h3 style="color: white; font-size: 2.5rem; margin-bottom: 2rem; max-width: 600px;">Suplementación con <span style="color: var(--medical-green); font-style: italic;">Rigor Hospitalario.</span></h3>
+                        <p style="color: var(--slate-light); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem;">
+                            Cada producto en nuestra boutique ha pasado por un proceso de auditoría técnica. Evaluamos biodisponibilidad, certificaciones de pureza y compatibilidad con protocolos clínicos.
+                        </p>
+                        <div style="display: flex; gap: 3rem;">
+                            <div>
+                                <h4 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">100%</h4>
+                                <p style="color: var(--slate-light); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Libre de Relleno</p>
+                            </div>
+                            <div>
+                                <h4 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">Grade A</h4>
+                                <p style="color: var(--slate-light); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Evidencia Científica</p>
+                            </div>
+                            <div>
+                                <h4 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">Audit</h4>
+                                <p style="color: var(--slate-light); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Control de Lote</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: relative; z-index: 2;">
+                        <div class="glass-card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: white; padding: 2rem; text-align: center;">
+                            <div style="width: 80px; height: 80px; background: var(--medical-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">
+                                🛡️
+                            </div>
+                            <h5 style="color: white; margin-bottom: 0.5rem;">Sello Criteria</h5>
+                            <p style="font-size: 0.8rem; opacity: 0.7;">Garantía de trazabilidad y eficacia terapéutica.</p>
+                        </div>
+                    </div>
+                    <!-- Background decoration -->
+                    <div style="position: absolute; right: -100px; top: -100px; width: 400px; height: 400px; background: var(--emerald-deep); filter: blur(150px); opacity: 0.3; pointer-events: none;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: PROFESIONAL -->
+        <section id="profesional" class="view-section">
+            <div style="max-width: 1280px; margin: 100px auto; padding: 0 2rem;">
+                <div style="background: var(--slate-dark); border-radius: 48px; overflow: hidden; display: grid; grid-template-columns: 400px 1fr; border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="background: #1e293b; padding: 4rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                        <div style="width: 200px; height: 200px; border-radius: 50%; background: #334155; margin-bottom: 2rem; border: 4px solid var(--medical-green); overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                            <img src="imagenes /foto javier 2.jpeg" alt="Lic. Javier Verde" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.3); transform-origin: center;">
+                        </div>
+                        <h3 style="color: white; font-size: 2rem; margin-bottom: 0.5rem;">Lic. Javier Verde</h3>
+                        <p style="color: var(--medical-green); font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem;">Fundador y Director</p>
+                        <a href="https://www.linkedin.com/in/javier-verde-59b39948?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" style="margin-top: 2rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; border-radius: 14px; color: white; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.8rem; text-decoration: none; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='var(--medical-green)'; this.style.color='var(--medical-green)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='white'">
+                            <i data-lucide="linkedin" style="width: 18px; height: 18px;"></i>
+                            <span>Conectar en LinkedIn</span>
+                        </a>
+                    </div>
+                    <div style="padding: 5rem;">
+                        <p style="color: var(--medical-green); font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.75rem; margin-bottom: 1.5rem;">Dirección Profesional</p>
+                        <h2 style="color: white; font-size: 3rem; margin-bottom: 2rem;">Compromiso con la <span style="color: var(--medical-green); font-style: italic;">Excelencia Nutricional.</span></h2>
+                        <p style="color: var(--slate-light); font-size: 1.1rem; line-height: 1.7; margin-bottom: 3rem;">
+                            Como Licenciado en Nutrición especializado en entornos de alta complejidad, mi misión es cerrar la brecha entre la ciencia académica y la práctica clínica diaria. Mi enfoque se centra en la personalización absoluta, utilizando la nutrición no solo como sustento, sino como una herramienta terapéutica de precisión para la recuperación funcional.
+                        </p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                            <div>
+                                <h4 style="color: white; margin-bottom: 0.5rem;">Jefe de Servicio</h4>
+                                <p style="color: var(--slate-light); font-size: 0.9rem;">Instituto Médico Río Cuarto (IMRC).</p>
+                            </div>
+                            <div>
+                                <h4 style="color: white; margin-bottom: 0.5rem;">Lic. en Nutrición - Área Crítica</h4>
+                                <p style="color: var(--slate-light); font-size: 0.9rem;">Hospital San Antonio de Padua (Río Cuarto).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CAMPUS / PORTAL (PRIVATE) -->
+        <section id="campus" class="view-section">
+            <div style="max-width: 1280px; margin: 0 auto; padding: 100px 2rem;">
+                <div id="campus-locked" class="locked-state" style="text-align: center; padding: 5rem 0;">
+                    <div style="width: 80px; height: 80px; background: var(--soft-stone); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; color: var(--slate-light);">
+                        <i data-lucide="lock" style="width: 32px; height: 32px;"></i>
+                    </div>
+                    <h2 class="font-heading" style="font-size: 2.5rem; margin-bottom: 1rem;">Campus Criteria</h2>
+                    <p style="color: var(--slate-light); margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        Este es un espacio exclusivo para pacientes y profesionales. Acceda para visualizar capacitaciones, guías técnicas y soporte personalizado.
+                    </p>
+                    <button class="btn btn-primary" onclick="app.openAuthModal()">Iniciar Sesión para Acceder</button>
+                </div>
+
+                <div id="campus-content" class="campus-grid" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 2rem;">
+                        <div>
+                            <span style="color: var(--medical-green); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;">Bienvenido al Portal</span>
+                            <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">Mi Campus <span style="color: var(--emerald-mid); font-style: italic;">Educativo.</span></h2>
+                        </div>
+                        <div id="user-info" style="text-align: right;">
+                            <p style="font-weight: 800; color: var(--slate-dark);">Paciente Criteria</p>
+                            <a href="#" onclick="app.logout()" style="color: #ef4444; font-size: 0.75rem; text-decoration: none; font-weight: 700;">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem;">
+                        <div>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 2rem; border-left: 4px solid var(--medical-green); padding-left: 1rem;">Capacitaciones Disponibles</h4>
+                            <div class="training-list" style="display: grid; gap: 2rem;">
+                                <!-- Training items -->
+                                <div class="glass-card" style="display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding: 1.5rem;">
+                                    <div style="background: var(--slate-dark); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--medical-green);">
+                                        <i data-lucide="play-circle" style="width: 48px; height: 48px;"></i>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 0.7rem; color: var(--slate-light); text-transform: uppercase; font-weight: 800;">Video Guía</span>
+                                        <h5 style="font-size: 1.1rem; margin: 0.5rem 0;">Preparación óptima de suplementos enterales</h5>
+                                        <p style="font-size: 0.85rem; color: var(--slate-light); margin-bottom: 1.5rem;">Aprenda la técnica correcta para evitar grumos y garantizar la máxima biodisponibilidad.</p>
+                                        <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.75rem; border: 1px solid var(--medical-green); color: var(--emerald-deep); background: transparent;">Ver ahora</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="campus-sidebar">
+                            <div class="glass-card" style="background: var(--soft-stone); border: none; padding: 2rem;">
+                                <h4 style="margin-bottom: 1rem;">Material de Apoyo</h4>
+                                <ul style="list-style: none; display: grid; gap: 1rem; font-size: 0.9rem;">
+                                    <li style="display: flex; align-items: center; gap: 0.75rem; color: var(--slate-light);">
+                                        <i data-lucide="file-text" style="width: 16px; height: 16px;"></i> Protocolo Post-Internación (PDF)
+                                    </li>
+                                    <li style="display: flex; align-items: center; gap: 0.75rem; color: var(--slate-light);">
+                                        <i data-lucide="file-text" style="width: 16px; height: 16px;"></i> Guía de Hidratación Clínica
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CONSULTORIO VIRTUAL / TURNOS -->
+        <section id="turnos" class="view-section">
+            <div style="max-width: 900px; margin: 100px auto; padding: 0 2rem;">
+                <div class="glass-card" style="padding: 4rem; text-align: center;">
+                    <span style="color: var(--medical-green); font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem;">Telemedicina Criteria</span>
+                    <h2 class="font-heading" style="font-size: 3rem; margin-top: 1rem; margin-bottom: 2rem;">Agende su Consulta <span style="color: var(--emerald-mid); font-style: italic;">Clínica.</span></h2>
+                    
+                    <div id="booking-steps" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 4rem;">
+                        <div class="step-indicator active" id="step-1-ind">1. Modalidad</div>
+                        <div class="step-indicator" id="step-2-ind">2. Screening</div>
+                        <div class="step-indicator" id="step-3-ind">3. Agenda</div>
+                    </div>
+
+                    <div id="booking-wizard-content">
+                        <!-- Step 1: Modality -->
+                        <div id="step-modality">
+                            <h4 style="margin-bottom: 2rem;">¿Qué tipo de atención requiere?</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                                <div class="option-card" onclick="app.setModality('virtual')" style="cursor: pointer; padding: 2rem; border: 2px solid #e2e8f0; border-radius: 24px; transition: all 0.3s ease;">
+                                    <i data-lucide="video" style="width: 32px; height: 32px; color: var(--medical-green); margin-bottom: 1rem;"></i>
+                                    <h5 style="margin-bottom: 0.5rem;">Consulta Virtual</h5>
+                                    <p style="font-size: 0.8rem; color: var(--slate-light);">Desde cualquier lugar del país vía Meet/Zoom.</p>
+                                </div>
+                                <div class="option-card" onclick="app.setModality('presencial')" style="cursor: pointer; padding: 2rem; border: 2px solid #e2e8f0; border-radius: 24px; transition: all 0.3s ease;">
+                                    <i data-lucide="map-pin" style="width: 32px; height: 32px; color: var(--emerald-deep); margin-bottom: 1rem;"></i>
+                                    <h5 style="margin-bottom: 0.5rem;">Presencial</h5>
+                                    <p style="font-size: 0.8rem; color: var(--slate-light);">Consultorio en IMRC (Río Cuarto).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Screening -->
+                        <div id="step-screening" style="display: none;">
+                            <h4 style="margin-bottom: 2rem;">Breve valoración previa</h4>
+                            <form onsubmit="app.submitScreening(event)" style="text-align: left; display: grid; gap: 1.5rem;">
+                                <div>
+                                    <label style="font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 0.5rem;">Especialidad / Patología</label>
+                                    <select required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                                        <option value="">Seleccione...</option>
+                                        <option value="critico">Paciente Crítico / Post-UCI</option>
+                                        <option value="onco">Nutrición Oncológica</option>
+                                        <option value="renal">Patología Renal</option>
+                                        <option value="cirugia">Pre/Post Cirugía Compleja</option>
+                                        <option value="otro">Otro / Clínica Médica</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 0.5rem;">Breve motivo de consulta</label>
+                                    <textarea placeholder="Cuéntenos brevemente su situación..." style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; height: 100px;"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Continuar a la Agenda</button>
+                            </form>
+                        </div>
+
+                        <!-- Step 3: Agenda -->
+                        <div id="step-agenda" style="display: none;">
+                            <h4 style="margin-bottom: 2rem;">Seleccione su turno</h4>
+                            <div style="background: #f8fafc; padding: 2rem; border-radius: 24px; border: 1px dashed var(--medical-green); margin-bottom: 2rem;">
+                                <i data-lucide="calendar" style="width: 48px; height: 48px; color: var(--medical-green); margin-bottom: 1rem;"></i>
+                                <p style="font-size: 0.9rem; color: var(--slate-dark); font-weight: 700;">Agenda disponible para la próxima semana</p>
+                                <p style="font-size: 0.8rem; color: var(--slate-light);">Al hacer clic, será derivado a la coordinación final vía WhatsApp con sus datos ya cargados.</p>
+                            </div>
+                            <button onclick="app.finishBooking()" class="btn btn-primary" style="width: 100%;">Coordinar por WhatsApp →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: BLOG -->
+        <section id="blog" class="view-section">
+            <div style="max-width: 1280px; margin: 0 auto; padding: 100px 2rem;">
+                <div style="text-align: center; margin-bottom: 5rem;">
+                    <h2 class="font-heading" style="font-size: 3.5rem; margin-bottom: 1.5rem;">Blog de Evidencia</h2>
+                    <p style="color: var(--slate-light); font-style: italic;">"Paper-to-Patient": Ciencia compleja simplificada para tu salud.</p>
+                </div>
+                <div id="blog-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                    <!-- Blog posts injected by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: white; border-top: 1px solid #e2e8f0; padding: 100px 0 40px;">
+        <div style="max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6rem;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                    <div class="logo-wrapper" style="transform: scale(0.8);">
+                        <div class="logo-halo"></div>
+                        <div class="nucleus"></div>
+                        <div class="valence v1"></div>
+                        <div class="valence v2"></div>
+                        <div class="valence v3"></div>
+                        <div class="connection c1"></div>
+                        <div class="connection c2"></div>
+                        <div class="connection c3"></div>
+                    </div>
+                    <h1 style="font-size: 1.5rem; font-weight: 900;">CRITERIA</h1>
+                </div>
+                <p style="color: var(--slate-light); max-width: 320px; font-size: 0.9rem;">
+                    Centro especializado en nutrición de alta complejidad. Dirección clínica y boutique basada estrictamente en evidencia.
+                </p>
+            </div>
+            <div>
+                <h4 style="font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.2em; margin-bottom: 2rem;">Logística</h4>
+                <ul style="list-style: none; color: var(--slate-light); font-size: 0.9rem; display: grid; gap: 1rem;">
+                    <li>Retiro habilitado en IMRC</li>
+                    <li>Consultorio Río Cuarto</li>
+                    <li>Envío Express</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.2em; margin-bottom: 2rem;">Aviso</h4>
+                <p style="color: var(--slate-light); font-size: 0.75rem; line-height: 1.8;">
+                    © 2026 CRITERIA. Todo el contenido cuenta con aval técnico. La suplementación no reemplaza la consulta médica.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT MODAL -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content glass-card">
+            <button class="close-modal">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+    
+    <!-- AMBIENT SOUND -->
+    <audio id="ambient-audio" src="bensound-tenderness.mp3" loop preload="auto"></audio>
+    
+    <div id="global-sound-toggle" class="sound-control muted">
+        <div class="sound-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content glass-card" style="max-width: 400px; padding: 3rem;">
+            <button class="close-modal" onclick="app.closeAuthModal()">&times;</button>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div class="logo-wrapper" style="transform: scale(0.6); margin: 0 auto 1.5rem;">
+                    <div class="logo-halo"></div>
+                    <div class="nucleus"></div>
+                </div>
+                <h3 style="font-size: 1.5rem; font-weight: 800;">Portal Criteria</h3>
+                <p style="font-size: 0.85rem; color: var(--slate-light);">Acceso a contenido exclusivo</p>
+            </div>
+            <form id="login-form" onsubmit="app.handleLogin(event)" style="display: grid; gap: 1.5rem;">
+                <div class="form-group">
+                    <label style="font-size: 0.75rem; font-weight: 800; color: var(--slate-dark); text-transform: uppercase; display: block; margin-bottom: 0.5rem;">Email de Paciente</label>
+                    <input type="email" placeholder="ejemplo@correo.com" required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; background: #f8fafc;">
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 0.75rem; font-weight: 800; color: var(--slate-dark); text-transform: uppercase; display: block; margin-bottom: 0.5rem;">Contraseña</label>
+                    <input type="password" placeholder="••••••••" required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; background: #f8fafc;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="padding: 1rem; width: 100%;">Iniciar Sesión</button>
+            </form>
+            <p style="font-size: 0.75rem; color: var(--slate-light); text-align: center; margin-top: 2rem;">
+                ¿No tiene acceso? <a href="#" style="color: var(--medical-green); font-weight: 800; text-decoration: none;">Solicitar clave</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
